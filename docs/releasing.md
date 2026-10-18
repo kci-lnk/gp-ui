@@ -27,6 +27,8 @@ git push origin vX.Y.Z
 
 稳定版本进入 `latest`，带预发布后缀的版本（例如 `0.2.0-beta.1`）进入 `next`。分支普通 push、PR、Release 草稿不会发布 npm。
 
+README 也是 npm 包的一部分：只推送 GitHub 不会更新 npmjs 页面。更新 npm 上的 README 时，同样需要递增版本并触发发布。
+
 ## 工作流执行内容
 
 - 校验 tag、package.json 和 package-lock.json 版本一致，提交属于 origin/main 历史。

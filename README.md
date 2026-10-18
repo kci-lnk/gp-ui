@@ -9,9 +9,9 @@ CSS 变量主题 · 明暗模式 · 国际化 · iOS 风格玻璃导航
 [![npm](https://img.shields.io/npm/v/%40kci-lnk%2Fgp-ui?color=c32232&label=npm)](https://www.npmjs.com/package/@kci-lnk/gp-ui)
 [![CI](https://github.com/kci-lnk/gp-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kci-lnk/gp-ui/actions/workflows/ci.yml)
 [![Vue](https://img.shields.io/badge/Vue-3.5-42b883?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
-[![License](https://img.shields.io/github/license/kci-lnk/gp-ui?color=64748b)](LICENSE)
+[![License](https://img.shields.io/github/license/kci-lnk/gp-ui?color=64748b)](https://github.com/kci-lnk/gp-ui/blob/main/LICENSE)
 
-[开始使用](#快速开始) · [组件 API](docs/components.md) · [主题与国际化](docs/theming.md) · [更新记录](CHANGELOG.md)
+[开始使用](#快速开始) · [组件 API](https://github.com/kci-lnk/gp-ui/blob/main/docs/components.md) · [主题与国际化](https://github.com/kci-lnk/gp-ui/blob/main/docs/theming.md) · [更新记录](https://github.com/kci-lnk/gp-ui/blob/main/CHANGELOG.md)
 
 </div>
 
@@ -103,7 +103,7 @@ const greeting = ref('');
 </UiConfigProvider>
 ```
 
-局部主题选择器应写在全局样式中。Provider 会让内容区域及挂载到 `body` 的浮层共享主题、明暗模式和文字方向；嵌套 Provider 继承未指定的配置。完整变量与配置项见 [主题指南](docs/theming.md)。
+局部主题选择器应写在全局样式中。Provider 会让内容区域及挂载到 `body` 的浮层共享主题、明暗模式和文字方向；嵌套 Provider 继承未指定的配置。完整变量与配置项见 [主题指南](https://github.com/kci-lnk/gp-ui/blob/main/docs/theming.md)。
 
 ## 组件一览
 
@@ -118,7 +118,7 @@ const greeting = ref('');
 
 日期值使用 `YYYY-MM-DD`，时间值使用 `HH:mm`。默认语言为英语、时区为 UTC、每周从周日开始；内置简体中文文案，也可通过 `messages` 接入自己的国际化系统。
 
-[查看所有 Props、事件与插槽 →](docs/components.md)
+[查看所有 Props、事件与插槽 →](https://github.com/kci-lnk/gp-ui/blob/main/docs/components.md)
 
 ## 玻璃导航
 
@@ -136,7 +136,7 @@ const greeting = ref('');
 />
 ```
 
-在 `<script setup>` 中用 `const active = ref('home')` 声明选中项。默认在文档流中显示；添加 `floating` 可固定在底部，页面需为导航预留空间。图标、路由及响应式侧栏接入方式见 [导航文档](docs/components.md#ios-风格玻璃导航)。
+在 `<script setup>` 中用 `const active = ref('home')` 声明选中项。默认在文档流中显示；添加 `floating` 可固定在底部，页面需为导航预留空间。图标、路由及响应式侧栏接入方式见 [导航文档](https://github.com/kci-lnk/gp-ui/blob/main/docs/components.md#ios-风格玻璃导航)。
 
 ## 体验与开发
 
@@ -147,8 +147,8 @@ npm ci
 npm run dev
 ```
 
-示例包含全部组件、并存主题、语言切换，以及加载和禁用状态。测试、构建与贡献约定见 [开发指南](CONTRIBUTING.md)；版本发布使用 [GitHub Actions 与 npm Trusted Publishing](docs/releasing.md)。
+示例包含全部组件、并存主题、语言切换，以及加载和禁用状态。测试、构建与贡献约定见 [开发指南](https://github.com/kci-lnk/gp-ui/blob/main/CONTRIBUTING.md)；版本发布使用 [GitHub Actions 与 npm Trusted Publishing](https://github.com/kci-lnk/gp-ui/blob/main/docs/releasing.md)。
 
 ## License
 
-[MIT](LICENSE) © 2026 kci-lnk
+[MIT](https://github.com/kci-lnk/gp-ui/blob/main/LICENSE) © 2026 kci-lnk

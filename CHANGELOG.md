@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.6
+
+- 重写 README，补充快速开始、CSS 变量主题、组件分类及玻璃导航示例。
+- 添加 npm、CI、Vue 与许可证徽章，文档链接兼容 GitHub 和 npm 页面。
+- 本版本仅更新文档和包版本，组件 API、JavaScript 与 CSS 保持不变。
+
 ## 0.1.5
 
 - 兼容 npm 10 与 npm 11 的发布预演 JSON 格式。
