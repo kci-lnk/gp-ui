@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.7
+
+- README 增加 GP Dashboard 实际界面配图，说明 GP UI 的名称与组件库来源。
+- 配图使用公开绝对地址，兼容 GitHub 与 npm 页面；配图不随 npm 安装包分发。
+- 本版本仅更新文档和包版本，组件 API、JavaScript 与 CSS 保持不变。
+
 ## 0.1.6
 
 - 重写 README，补充快速开始、CSS 变量主题、组件分类及玻璃导航示例。

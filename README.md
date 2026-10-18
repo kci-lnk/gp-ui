@@ -25,6 +25,16 @@ GP UI 提供 22 个组件和一个配置 Provider，覆盖表单、浮层、反�
 - **配置可继承** — 集中管理语言、文案、时区、周起始日与 RTL 方向。
 - **直接接入 Vue** — TypeScript 类型、命名导入与预编译 CSS；无需配置 Sass。
 
+## 源自 GP Dashboard
+
+GP UI 的名字来自光伏聚合监测平台 **GP Dashboard**。我们将平台中的通用界面组件抽离为独立的 Vue 3 组件库，让表单、浮层与玻璃导航可以在其他应用中复用。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kci-lnk/gp-ui/main/.github/assets/gp-dashboard.png" alt="GP Dashboard 手机界面：电池状态、能源流、用电统计与底部玻璃导航" width="360" />
+  <br />
+  <sub>GP Dashboard · GP UI 的起点</sub>
+</p>
+
 ## 安装
 
 在 Vue 3.5 项目中安装：

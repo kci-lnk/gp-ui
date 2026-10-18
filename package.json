@@ -1,6 +1,6 @@
 {
   "name": "@kci-lnk/gp-ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "description": "Vue 3 components with CSS variable themes, accessible primitives and glass navigation",
   "files": [
