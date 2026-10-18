@@ -6,22 +6,13 @@
 
 ## 安装
 
-包名为 **`@kci-lnk/gp-ui`**。当前仓库已准备 npm 发布配置，首次发布前请使用本地安装包；无作用域的 `gp-ui` 是其他维护者的包。
-
-```sh
-# 在本仓库生成安装包（自动构建）
-npm ci
-npm pack
-
-# 在消费项目中安装，替换为安装包的实际路径
-npm install /path/to/kci-lnk-gp-ui-0.1.3.tgz
-```
-
-发布到 npm 后可使用：
+包名为 **`@kci-lnk/gp-ui`**，要求宿主使用 Vue 3.5。无作用域的 `gp-ui` 是其他维护者的包。
 
 ```sh
 npm install @kci-lnk/gp-ui vue@^3.5.0
 ```
+
+也可以在本仓库运行 `npm ci && npm pack`，然后在消费项目中通过 `npm install /path/to/kci-lnk-gp-ui-<version>.tgz` 安装本地归档。
 
 ## 快速开始
 

@@ -1,8 +1,15 @@
 # Changelog
 
+## 0.1.4
+
+- 配置 GitHub tag / Release 驱动的 npm Trusted Publishing，无需长期发布 token。
+- 发布前校验 tag、版本和 main 提交历史，执行浏览器测试及独立安装验证。
+- 发布经过验证的同一个 tgz，校验 registry 完整性并避免重复发布。
+- 更新 npm 安装说明与自动发布操作指南。
+
 ## 0.1.3
 
-首次整理为独立 Git 仓库，准备以 `@kci-lnk/gp-ui` 发布到 npm；尚未执行 registry 发布。
+首次整理为独立 Git 仓库，以 `@kci-lnk/gp-ui` 作为 npm 包名。
 
 - 将早期本地包 `gp-ui` 改为作用域包 `@kci-lnk/gp-ui`，采用 MIT 许可证。
 - 提供 22 个 Vue 组件及配置 Provider，包括 iOS 风格玻璃导航。

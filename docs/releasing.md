@@ -1,44 +1,68 @@
-# npm 发布流程
+# npm 自动发布
 
-包名为 `@kci-lnk/gp-ui`，仓库为 <https://github.com/kci-lnk/gp-ui>，许可证为 MIT。此文档描述手动发布流程；Git 推送和 CI 不会自动发布 npm。
+包名为 `@kci-lnk/gp-ui`，仓库为 <https://github.com/kci-lnk/gp-ui>，许可证为 MIT。`.github/workflows/publish.yml` 通过 npm Trusted Publishing（OIDC）发布，不需要 `NPM_TOKEN` 或其他长期发布凭据。
 
-## 首次发布前
+## 发布新版本
 
-1. 确认 npm 登录账号有 `kci-lnk` 用户或组织作用域的发布权限。GitHub 的同名账号及 SSH 身份不代表拥有 npm 权限。
-2. 使用 `npm login --registry=https://registry.npmjs.org/` 登录，并通过 `npm whoami --registry=https://registry.npmjs.org/` 核对身份。按 npm 提示完成双因素认证；不要将 token、密码或私有 `.npmrc` 放入仓库。
-3. 核对包名、版本、MIT 许可证、README、CHANGELOG、repository 和 exports。`publishConfig` 已声明 npm 官方 registry 和 public 访问级别。
+1. 更新版本及 CHANGELOG，在 main 分支提交、推送。
+2. 推送与 `package.json` 版本完全一致的 `v` 前缀 tag，或者在 GitHub 创建对应版本的 Release。
+3. 等待 **Publish npm** 工作流通过，然后从 npm 安装验证。
 
-## 验证并发布同一个安装包
-
-使用干净工作树、Node 22.12+ 和锁文件安装依赖。未发布的版本可以直接验证；后续版本应先用 `npm version patch --no-git-tag-version`（或明确的 minor/major）递增版本并更新 CHANGELOG。已发布的 name/version 不能重复使用。
+例如，下一个补丁版本：
 
 ```sh
-npm ci
-npx playwright install --with-deps chromium webkit
-CI=1 npm run check
-npm pack
+npm version patch --no-git-tag-version
+# 编辑 CHANGELOG.md，记录本次变化
+npm run typecheck
+npm test
+git add package.json package-lock.json CHANGELOG.md
+git commit -m "chore: release next patch"
+git push origin main
+# 将下方 X.Y.Z 替换为 package.json 的实际版本
+git tag -a vX.Y.Z -m "Release vX.Y.Z"
+git push origin vX.Y.Z
 ```
 
-记录 `npm pack` 输出的文件名，下列命令以当前版本为例。后续发布须替换为实际的新版本，不覆盖此前保存的同名安装包。
+也可先推送版本提交，再通过 GitHub 的 Releases → Draft a new release 创建 `vX.Y.Z` tag 并发布。Release 和 tag push 都会触发流程；同一版本串行执行，若 registry 中已有相同完整性的归档，则不重复发布。如果同版本内容不同，流程失败，必须递增版本，不能覆盖已发布的 npm 版本或移动已有发布 tag。
 
-```sh
-CI=1 npm run verify:package -- ./kci-lnk-gp-ui-0.1.3.tgz
-npm publish ./kci-lnk-gp-ui-0.1.3.tgz --dry-run --access public --registry=https://registry.npmjs.org/
-```
+稳定版本进入 `latest`，带预发布后缀的版本（例如 `0.2.0-beta.1`）进入 `next`。分支普通 push、PR、Release 草稿不会发布 npm。
 
-检查安装包只包含 `dist/`、公开文档、README、CHANGELOG、LICENSE 和 package.json；不应含源码路径、凭据、workspace/file 依赖或业务项目资源。`--dry-run` 不会发布，也不能证明账号有发布权限。
+## 工作流执行内容
 
-提交、推送并确认 CI 通过后，再执行实际发布：
+- 校验 tag、package.json 和 package-lock.json 版本一致，提交属于 origin/main 历史。
+- 使用 GitHub 托管的 Ubuntu 24.04、Node 22 和固定 npm 11.21.0；发布构建不恢复依赖缓存。
+- `npm ci`、类型检查、27 项 Chromium/WebKit 浏览器回归及示例生产构建。
+- 构建 ESM/CSS/声明并打成 `.release/package.tgz`，在独立 Vue 项目验证这个归档。
+- 通过 OIDC 发布同一个归档，并核对 npm registry 返回的 SHA-512 完整性。
+- 保存 tgz 为 GitHub Actions artifact，保留 30 天。失败时保存测试结果。
 
-```sh
-npm publish ./kci-lnk-gp-ui-0.1.3.tgz --access public --registry=https://registry.npmjs.org/
-npm view @kci-lnk/gp-ui@0.1.3 version dist.integrity --registry=https://registry.npmjs.org/
-```
+GitHub 托管的公开仓库通过 OIDC 发布公开 npm 包时，npm 自动生成 provenance 来源证明。
 
-发布成功后为对应提交创建 `v0.1.3` 标签并推送（后续版本使用对应标签），在新的消费项目中从 registry 安装验证。首次发布后更新 README 中“首次发布前”的说明。发布失败时先检查 registry 上该版本是否已存在，避免重复发布或随意替换本地归档。
+## npm 侧配置
+
+npm → `@kci-lnk/gp-ui` → Settings → Trusted publishing：
+
+| 字段                 | 值                                              |
+| -------------------- | ----------------------------------------------- |
+| Provider             | GitHub Actions                                  |
+| Organization or user | `kci-lnk`                                       |
+| Repository           | `gp-ui`                                         |
+| Workflow filename    | `publish.yml`                                   |
+| Environment name     | 留空（本工作流不使用 environment）              |
+| Allowed actions      | 允许 `npm publish`；无需额外允许 `npm dist-tag` |
+
+配置必须与仓库及工作流文件名完全一致。工作流只有发布 job 获得 `id-token: write`，不使用 npm token Secret。npm 账号仍保持双因素认证。
+
+首次建包需要管理员通过 npm CLI 和浏览器认证发布一次，才能在包设置页建立可信发布连接；随后再发布一个新版本验证 OIDC。新建可信连接须在 2 天内完成首次成功发布。以后不需要重复 CLI 登录或手工提供验证码。
+
+## 失败与重试
+
+在 GitHub Actions 打开失败的 **Publish npm**，先修复原因再重跑。若代码或包内容需要修改，应使用新版本和新 tag。若只是 npm 信任配置字段错误、浏览器下载或网络失败，可修复配置后重跑同一提交。重复执行会校验已有版本的归档完整性，而不是覆盖。
+
+本地可用 `npm run verify:package` 执行自动临时打包验证；`npm run verify:package -- /path/to/package.tgz` 验证指定归档。不要将 token、`.npmrc` 或登录配置提交到 Git。
 
 ## 从早期本地包升级
 
-0.1.2 及以前的本地归档使用无作用域名称 `gp-ui`，没有发布到此作用域。升级时应卸载旧包、安装 `@kci-lnk/gp-ui`，并将组件导入和 CSS 导入分别改为 `@kci-lnk/gp-ui`、`@kci-lnk/gp-ui/style.css`。现有固定使用旧 tgz 的项目不会自动升级。
+0.1.2 及以前的本地归档使用无作用域名称 `gp-ui`。升级时卸载旧包、安装 `@kci-lnk/gp-ui`，并将组件导入和 CSS 导入分别改为 `@kci-lnk/gp-ui`、`@kci-lnk/gp-ui/style.css`。固定使用旧 tgz 的项目不会自动升级。
 
-参考：[npm 包元数据](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)、[npm publish](https://docs.npmjs.com/cli/v11/commands/npm-publish/)。
+参考：[npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/)、[npm publish](https://docs.npmjs.com/cli/v11/commands/npm-publish/)。
