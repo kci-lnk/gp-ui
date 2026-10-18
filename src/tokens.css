@@ -1,0 +1,74 @@
+:root,
+[data-gp-mode='light'] {
+  --gp-bg: #f5f5f7;
+  --gp-surface: #fff;
+  --gp-text: #171a20;
+  --gp-muted: #666b73;
+  --gp-border: #e6e7e9;
+  --gp-success: #27834c;
+  --gp-warning: #a7732f;
+  --gp-warning-soft: #fcf3e3;
+  --gp-danger: #b54f49;
+  --gp-danger-soft: #f8eeee;
+  --gp-accent: var(--gp-primary);
+  --gp-accent-soft: color-mix(in srgb, var(--gp-primary) 7%, var(--gp-surface));
+  --gp-soft: #f0f1f3;
+  --gp-shadow: inset 0 1px 0 #ffffff, 0 2px 5px #171a2004, 0 12px 28px #171a2005;
+  --gp-surface-raised:
+    radial-gradient(ellipse at 12% 0%, #ffffff66 0%, #ffffff00 64%),
+    linear-gradient(145deg, #ffffff 28%, #fafafb 100%);
+  --gp-nav-glass: rgba(250, 250, 252, 0.32);
+  --gp-nav-rim: rgba(255, 255, 255, 0.58);
+  --gp-nav-glint: rgba(255, 255, 255, 0.22);
+  --gp-nav-shade: rgba(255, 255, 255, 0.015);
+  --gp-nav-shadow: 0 8px 32px #171a2021, 0 2px 8px #171a200c;
+  --gp-nav-selection: rgba(88, 94, 105, 0.12);
+  --gp-nav-selection-rim: rgba(255, 255, 255, 0.48);
+  --gp-nav-label: #50555e;
+}
+:root {
+  --gp-primary: #c32232;
+  --gp-danger-background: #b54f49;
+  --gp-danger-foreground: #fff;
+  --gp-primary-foreground: #fff;
+  --gp-font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --gp-radius: 8px;
+  --gp-card-radius: 15px;
+  --gp-dialog-radius: 16px;
+  --gp-motion-fast: 140ms;
+  --gp-motion-enter: 220ms;
+  --gp-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gp-switch-off: #a5a9af;
+  --gp-overlay: #111317a6;
+  --gp-shadow-dialog: 0 25px 80px #0003;
+  --gp-shadow-popover: 0 12px 40px #0002;
+  --gp-shadow-tooltip: 0 4px 16px #0002;
+  --gp-navigation-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+[data-gp-mode='dark'] {
+  --gp-bg: #141619;
+  --gp-surface: #202327;
+  --gp-text: #f1f2f3;
+  --gp-muted: #a8adb5;
+  --gp-border: #35393e;
+  --gp-success: #73c48e;
+  --gp-warning: #edc686;
+  --gp-warning-soft: #3a3020;
+  --gp-danger: #ee988c;
+  --gp-danger-soft: #35262c;
+  --gp-accent: #ff909b;
+  --gp-accent-soft: #35262c;
+  --gp-soft: #2b2f34;
+  --gp-shadow: inset 0 1px 0 #ffffff0c, 0 2px 5px #080a0e14, 0 12px 28px #080a0e24;
+  --gp-surface-raised:
+    radial-gradient(ellipse at 12% 0%, #ffffff03 0%, #ffffff00 64%),
+    linear-gradient(145deg, #23262a 0%, #202327 100%);
+  --gp-nav-glass: rgba(24, 27, 32, 0.42);
+  --gp-nav-rim: rgba(255, 255, 255, 0.17);
+  --gp-nav-glint: rgba(255, 255, 255, 0.1);
+  --gp-nav-shade: rgba(255, 255, 255, 0.01);
+  --gp-nav-shadow: 0 8px 32px #00000059, 0 2px 8px #00000029;
+  --gp-nav-selection: rgba(225, 231, 241, 0.14);
+  --gp-nav-selection-rim: rgba(255, 255, 255, 0.14);
+  --gp-nav-label: #d2d5dc;
+}

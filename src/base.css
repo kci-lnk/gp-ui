@@ -1,0 +1,178 @@
+.gp-config {
+  display: contents;
+}
+:where([class^='gp-'], [class*=' gp-']) {
+  box-sizing: border-box;
+  font-family: var(--gp-font-family);
+}
+:where(
+    .gp-field,
+    .gp-dialog-content,
+    .gp-date-popover,
+    .gp-popover,
+    .gp-select-content,
+    .gp-time-popover,
+    .gp-card,
+    .gp-glass-nav
+  )
+  *,
+:where(
+    .gp-field,
+    .gp-dialog-content,
+    .gp-date-popover,
+    .gp-popover,
+    .gp-select-content,
+    .gp-time-popover,
+    .gp-card,
+    .gp-glass-nav
+  )
+  *::before,
+:where(
+    .gp-field,
+    .gp-dialog-content,
+    .gp-date-popover,
+    .gp-popover,
+    .gp-select-content,
+    .gp-time-popover,
+    .gp-card,
+    .gp-glass-nav
+  )
+  *::after {
+  box-sizing: border-box;
+}
+:where(
+  button[class^='gp-'],
+  a[class^='gp-'],
+  .gp-field input,
+  .gp-field textarea,
+  .gp-weekday-field button,
+  .gp-calendar-footer button
+) {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+:where(button[class^='gp-'], .gp-weekday-field button, .gp-calendar-footer button) {
+  cursor: pointer;
+}
+:where(button[class^='gp-'], .gp-weekday-field button, .gp-calendar-footer button):disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+:where(
+  [class^='gp-'],
+  .gp-field input,
+  .gp-field textarea,
+  .gp-calendar-footer button,
+  .gp-weekday-field button
+):focus-visible {
+  outline: 2px solid var(--gp-accent);
+  outline-offset: 3px;
+}
+.gp-card,
+.gp-dialog-content,
+.gp-date-popover {
+  color: var(--gp-text);
+}
+.gp-muted {
+  color: var(--gp-muted);
+}
+.gp-error,
+.gp-field .gp-error {
+  color: var(--gp-danger);
+}
+.gp-small {
+  font-size: 12px;
+}
+.gp-card-header {
+  margin-bottom: 12px;
+}
+.gp-card-footer {
+  margin-top: 16px;
+}
+.gp-card p {
+  line-height: 1.65;
+}
+.gp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 30px;
+  padding: 8px 13px;
+  background: var(--gp-soft);
+  color: var(--gp-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.gp-badge[data-variant='primary'] {
+  color: var(--gp-accent);
+  background: var(--gp-accent-soft);
+}
+.gp-badge[data-variant='success'] {
+  color: var(--gp-success);
+}
+.gp-badge[data-variant='warning'] {
+  color: var(--gp-warning);
+  background: var(--gp-warning-soft);
+}
+.gp-badge[data-variant='danger'] {
+  color: var(--gp-danger);
+  background: var(--gp-danger-soft);
+}
+.gp-badge .gp-live-dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.gp-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  padding: 35px;
+  color: var(--gp-muted);
+  min-height: 170px;
+}
+.gp-empty-state h3 {
+  font-size: 18px;
+  margin: 0;
+}
+.gp-empty-state p {
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+}
+.gp-skeleton {
+  display: block;
+  background: var(--gp-border);
+}
+.gp-skeleton[data-animated='true'] {
+  animation: gp-skeleton-pulse 1.5s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([class^='gp-'], [class*=' gp-']),
+  :where([class^='gp-'], [class*=' gp-'])::before,
+  :where(.gp-date-popover, .gp-weekday-field, .gp-field) * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.gp-button--child-loading::before {
+  content: '';
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: gp-spin 0.8s linear infinite;
+}
+.gp-button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
