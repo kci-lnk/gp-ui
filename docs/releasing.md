@@ -33,7 +33,7 @@ git push origin vX.Y.Z
 - 使用 GitHub 托管的 Ubuntu 24.04、Node 22 和固定 npm 11.21.0；发布构建不恢复依赖缓存。
 - `npm ci`、类型检查、27 项 Chromium/WebKit 浏览器回归及示例生产构建。
 - 构建 ESM/CSS/声明并打成 `.release/package.tgz`，在独立 Vue 项目验证这个归档。
-- 通过 OIDC 发布同一个归档，并核对 npm registry 返回的 SHA-512 完整性。
+- 通过 OIDC 发布同一个归档，等待 npm 处理及 registry 同步（最多 10 分钟），并核对返回的 SHA-512 完整性。
 - 保存 tgz 为 GitHub Actions artifact，保留 30 天。失败时保存测试结果。
 
 GitHub 托管的公开仓库通过 OIDC 发布公开 npm 包时，npm 自动生成 provenance 来源证明。

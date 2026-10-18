@@ -1,6 +1,11 @@
 # Changelog
 
-## 0.1.4
+## 0.1.5
+
+- 兼容 npm 10 与 npm 11 的发布预演 JSON 格式。
+- 发布后等待 npm 处理和 registry 同步，再验证安装包完整性。
+
+## 0.1.4（工作流验证，未发布 npm）
 
 - 配置 GitHub tag / Release 驱动的 npm Trusted Publishing，无需长期发布 token。
 - 发布前校验 tag、版本和 main 提交历史，执行浏览器测试及独立安装验证。

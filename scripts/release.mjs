@@ -76,7 +76,8 @@ if (command === 'validate') {
       { stdio: 'inherit' },
     );
     let published;
-    for (let attempt = 0; attempt < 6; attempt++) {
+    const deadline = Date.now() + 10 * 60 * 1000;
+    while (Date.now() < deadline) {
       published = await publishedVersion();
       if (published) break;
       await new Promise((resolve) => setTimeout(resolve, 5000));

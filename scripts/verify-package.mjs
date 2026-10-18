@@ -26,7 +26,7 @@ try {
     );
     archive = join(packTemp, packed.filename);
   }
-  const packed = JSON.parse(
+  const publishOutput = JSON.parse(
     execFileSync(
       'npm',
       [
@@ -42,6 +42,8 @@ try {
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] },
     ),
   );
+  // npm 10 returns one record; npm 11 keys records by package name.
+  const packed = publishOutput[packageName] ?? publishOutput;
   assert.equal(packed.name, packageName);
   assert.equal(packed.version, manifest.version);
   for (const file of packed.files) {
