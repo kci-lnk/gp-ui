@@ -94,9 +94,6 @@ h2 {
   padding: 20px;
   border-radius: 24px;
 }
-.preview > .gp-card {
-  margin-bottom: 20px;
-}
 .preview-heading {
   text-transform: capitalize;
 }
