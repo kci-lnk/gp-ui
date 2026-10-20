@@ -8,6 +8,7 @@ import {
   UiDialog,
   UiConfirmDialog,
   UiTabs,
+  UiPagination,
   UiSelect,
   UiNumberField,
   UiDatePicker,
@@ -38,6 +39,7 @@ const name = ref('Ada'),
   busy = ref(false),
   nav = ref('home'),
   confirmed = ref(0);
+const pageNumber = ref(1);
 const disabled = ref(false);
 const linkValue = ref('first');
 const linkItems = [
@@ -61,6 +63,8 @@ function save() {
 }
 </script>
 <template>
+  <UiPagination v-model="pageNumber" :total="95" :page-size="10" />
+  <UiTabs v-model="tab" variant="line" label="Line navigation" :items="[{value:'design',label:'Design'},{value:'code',label:'Code'}]" />
   <div class="showcase">
     <UiCard
       ><template #header><h2>Actions & feedback</h2></template>

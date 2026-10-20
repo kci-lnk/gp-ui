@@ -28,3 +28,5 @@ export { enUS, zhCN } from './locales';
 export type { UiMessages, UiMessageKey } from './locales';
 export { default as UiGlassNav } from './UiGlassNav.vue';
 export type { GlassNavItem } from './UiGlassNav.vue';
+
+export { default as UiPagination } from './UiPagination.vue';

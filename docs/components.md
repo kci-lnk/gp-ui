@@ -47,3 +47,9 @@
 - `floating=false`：默认在文档流内；启用后固定在底部，自动计入安全区。宿主必须为内容留出底部空间。
 - `responsive=false`：默认始终显示玻璃导航；启用后宽屏变为竖向普通导航，760px 以下或矮屏触摸设备显示玻璃样式。宿主负责侧栏容器布局。
 - `aria-current`、键盘原生激活、减少动态效果、透明度降级以及 RTL 指示器均由组件处理。
+
+## Pagination and flat navigation
+
+`UiPagination` accepts `v-model` (one-based page), `total`, `pageSize` (default 20), and `disabled`. It displays a bounded page window, previous/next controls, current-page semantics and a live result summary. Fetch the requested page in the consumer; reset or clamp the model when filters or result totals change. Optional `label`, `previousLabel`, `nextLabel`, and `summary` override translated text. Locale messages also include `pageNumber`.
+
+`UiTabs` accepts `variant="line"` for a single horizontal navigation row with a trailing underline. The default remains `segmented`. Line tabs scroll within their container on narrow screens and retain Reka keyboard navigation.

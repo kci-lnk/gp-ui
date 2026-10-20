@@ -1,4 +1,5 @@
 export const enUS = {
+  pagination: 'Pagination', previousPage: 'Previous', nextPage: 'Next', pageNumber: 'Page {page}', pageSummary: '{total} results · {page} / {pages}',
   closeDetails: 'Close details',
   hours: 'Hours',
   repeatOn: 'Repeat on',
@@ -22,6 +23,7 @@ export const enUS = {
 export type UiMessageKey = keyof typeof enUS;
 export type UiMessages = Record<UiMessageKey, string>;
 export const zhCN: UiMessages = {
+  pagination: '分页', previousPage: '上一页', nextPage: '下一页', pageNumber: '第 {page} 页', pageSummary: '共 {total} 条 · 第 {page} / {pages} 页',
   closeDetails: '关闭详情',
   hours: '小时',
   repeatOn: '重复日期',

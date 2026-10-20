@@ -986,3 +986,15 @@
   padding-left: 18px;
   margin: 4px 0;
 }
+
+.gp-tabs-root[data-variant='line'] { min-width: 0; overflow-x: auto; scrollbar-width: thin; }
+.gp-tabs--line { display: flex; width: max-content; min-width: 100%; margin-bottom: 0; padding: 0; gap: 8px; border: 0; border-bottom: 1px solid var(--gp-border); border-radius: 0; background: transparent; }
+.gp-tabs--line .gp-tab { white-space: nowrap; border-radius: 0; padding: 12px 16px; font-size: 14px; }
+.gp-tabs--line .gp-tab-indicator { top: auto; bottom: 0; height: 2px; border-radius: 0; background: var(--gp-accent); }
+.gp-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; }
+.gp-pagination-summary { font-size: 13px; color: var(--gp-muted); }
+.gp-pagination-controls { display: flex; align-items: center; gap: 4px; }
+.gp-pagination-controls .gp-button { min-width: 44px; padding: 10px 12px; }
+.gp-pagination-page { min-width: 44px; min-height: 44px; border: 0; border-radius: 8px; color: var(--gp-text); background: transparent; cursor: pointer; }
+.gp-pagination-page[aria-current='page'] { color: var(--gp-accent); background: var(--gp-accent-soft); font-weight: 600; }
+.gp-pagination-page:disabled { opacity: .5; cursor: default; }

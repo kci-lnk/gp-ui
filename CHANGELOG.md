@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.8
+
+- Add accessible, localized UiPagination with bounded page controls and loading state.
+- Add an opt-in line variant for flat tab navigation, preserving the segmented default.
+- Add browser coverage for pagination bounds, keyboard activation and line tabs.
+
+
 ## 0.1.7
 
 - README 增加 GP Dashboard 实际界面配图，说明 GP UI 的名称与组件库来源。

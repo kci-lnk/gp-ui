@@ -206,3 +206,19 @@ test('nested LTR navigation inside RTL content keeps its own indicator direction
   await nav.evaluate((element) => element.removeAttribute('dir'));
   await check();
 });
+
+test('pagination bounds and line navigation work with keyboard', async ({ page }) => {
+  await page.goto('/');
+  const preview=page.locator('.default-preview');
+  const pager=preview.getByRole('navigation',{name:'Pagination',exact:true});
+  await expect(pager.getByRole('button',{name:'Previous',exact:true})).toBeDisabled();
+  await pager.getByRole('button',{name:'Next',exact:true}).click();
+  await expect(pager.getByRole('button',{name:'Page 2',exact:true})).toHaveAttribute('aria-current','page');
+  await pager.getByRole('button',{name:'Page 3',exact:true}).focus();
+  await page.keyboard.press('Enter');
+  await expect(pager.getByRole('status')).toContainText('3 / 10');
+  const tabs=preview.getByRole('tablist',{name:'Line navigation'});
+  await tabs.getByRole('tab',{name:'Design',exact:true}).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(tabs.getByRole('tab',{name:'Code',exact:true})).toHaveAttribute('aria-selected','true');
+});
